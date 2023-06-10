@@ -2,3 +2,14 @@
 
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #172554;
+    width: 100%;
+}

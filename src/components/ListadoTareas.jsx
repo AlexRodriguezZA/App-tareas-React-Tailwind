@@ -1,20 +1,25 @@
-import React from 'react'
-import Tareas from './Tareas'
+import React from "react";
+import Tareas from "./Tareas";
 
-const ListadoTareas = ({tareas,setTareas}) => {
-
+const ListadoTareas = ({ tareas, setTareas }) => {
+  const handleDeleteTarea = (id) => {
+    const newArrayTareas = tareas.filter((tarea) => tarea.id !== id);
+    setTareas(newArrayTareas);
+  };
   return (
-    <div className='w-1/2 lg:w-3/5'>
-
-    <h2 className='text-xl mt-5 mb-10 text-center'>Listado de tareas</h2>
-      {
-        tareas.map( tarea => <Tareas key={tarea.id} tarea={tarea}/>
-        )
-
-      }
+    <div className="mt-10 w-full md:w-1/2 lg:w-3/5 flex flex-col items-center md:mt-0 scrollbar-thumb-gray-300 scrollbar-track-green-100">
+      <section className="grid w-5/6 grid-cols-1 gap-2 md:grid-cols-2 md:gap-6  md:overflow-y-auto md:h-5/6">
+        {tareas.map((tarea) => (
+          <Tareas
+            tarea={tarea}
+            key={tarea.id}
+            handleDeleteTarea={handleDeleteTarea}
+            setTareas={setTareas}
+          />
+        ))}
+      </section>
     </div>
-    
-  )
-}
+  );
+};
 
-export default ListadoTareas
+export default ListadoTareas;

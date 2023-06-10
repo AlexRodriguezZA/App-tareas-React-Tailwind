@@ -1,38 +1,136 @@
-import React from 'react'
+import { AiOutlineCalendar } from "react-icons/ai";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
-const Tareas = ({ tarea }) => {
+const Avartars_Url = [
+  "https://api.multiavatar.com/Binx Bond.svg",
+  "https://api.multiavatar.com/Starcrasher.svg",
+  "https://api.multiavatar.com/Projectionist.svg",
+];
+
+const Tareas = ({ tarea, handleDeleteTarea }) => {
+  const [nombre, setNombre] = useState(tarea.nombre);
+  const [Puesto, setPuesto] = useState(tarea.Puesto);
+  const [Fecha, setFecha] = useState(tarea.Fecha);
+  const [Descripcion, setDescripcion] = useState(tarea.Descripcion);
+  const [EditMode, setEditMode] = useState(false);
+  
+  function getRandomZeroOneOrTwo() {
+    return Math.floor(Math.random() * 3);
+  }
+  const randomValue = getRandomZeroOneOrTwo();
+
   return (
-    <div className='mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl flex'>
-      <div>
-        <p className='font-bold mb-3 text-gray-700 uppercase'> Nombre:  
-        <span className='font-normal normal-case text-center'> {tarea.nombre} </span>
-        </p>
+    <>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ rotate: 360, scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 20,
+        }}
+      >
+        {" "}
+        <div className="w-72 m-1 bg-gradient-to-b from-sky-900 to-sky-950 mb-3 rounded-2xl shadow-md shadow-cyan-500/40 flex flex-col justify-center items-center">
+          {/*Informacion del usuario */}
+          <section className="w-11/12 flex gap-3 ml-4 mt-2">
+            <div className="rounded-full h-20 bg-cyan-400 w-20 mt-3">
+              <img
+                src={Avartars_Url[randomValue]}
+                className="w-20 p-0.5 rounded-full"
+                alt="imagen"
+              />
+            </div>
+            <div className="mt-8 flex w-1/2 flex-col">
+              {!EditMode ? (
+                <p className="text-cyan-300 text-lg font-bold">
+                  {tarea.nombre}
+                </p>
+              ) : (
+                <input
+                  type="text"
+                  value={nombre}
+                  className="w-full h-5  bg-gray-800 text-lg px-1 text-cyan-50 rounded-lg ring-2 ring-blue-600"
+                />
+              )}
+              {!EditMode ? (
+                <span className="text-gray-400 font-semibold text-xs">
+                  {tarea.Puesto}
+                </span>
+              ) : (
+                <input
+                  type="text"
+                  value={Puesto}
+                  className="w-24 h-4 mt-2 rounded-lg text-xs px-1 text-cyan-50 bg-gray-800 ring-2 ring-blue-600"
+                />
+              )}
+            </div>
+          </section>
+          {/*Fecha y descripción*/}
 
-        <p className='font-bold mb-3 text-gray-700 uppercase'> Puesto: 
-          <span className='font-normal normal-case'> {tarea.Puesto}</span>
-        </p>
+          <section className="w-11/12 mt-5">
+          {!EditMode ? (
+                 <p className="text-gray-400 font-semibold text-sm text-justify flex gap-2 items-center">
+                 <AiOutlineCalendar /> {tarea.Fecha}
+               </p>
+              ) : (
+                <input
+                  type="date"
+                  value={Fecha}
+                  className="w-30 h-4 text-cyan-50 text-sm  bg-gray-800 rounded-sm ring-2 ring-blue-600"
+                />
+              )}
+           
+           {!EditMode ? (
+                 <p className="text-gray-300 font-semibold text-sm text-justify mt-3">
+                 {tarea.Descripcion}
+               </p>
+              ) : (
+                <textarea
+                  type="date"
+                  value={Descripcion}
+                  className="w-full h-14  bg-gray-800 mt-3 rounded-lg ring-2 ring-blue-600"
+                />
+              )}
+             
+         
+          </section>
 
-        <p className='font-bold mb-3 text-gray-700 uppercase'> Fecha: 
-          <span className='font-normal normal-case'> {tarea.Fecha}</span>
-        </p>
+          {!EditMode ? (
+            <div className="w-11/12 my-5   flex gap-5 justify-center">
+              <button
+                onClick={() => setEditMode(true)}
+                className="ring-2  ring-green-500 text-cyan-50 rounded-xl px-5 py-1 hover:bg-green-800"
+              >
+                Edit
+              </button>
 
-        <p className='font-bold mb-3 text-gray-700 uppercase'> Descripción: 
-          <span className='font-normal normal-case'> {tarea.Descripcion}</span>
-        </p>
-      </div>
-      
+              <button
+                onClick={() => handleDeleteTarea(tarea.id)}
+                className="ring-2  ring-red-500 text-cyan-50 rounded-xl px-3 py-1 hover:bg-red-800"
+              >
+                Delete
+              </button>
+            </div>
+          ) : (
+            <div className="w-11/12 my-5   flex gap-5 justify-center">
+              <button className="ring-2  ring-blue-500 text-cyan-50 rounded-xl px-5 py-1 hover:bg-blue-800">
+                Save
+              </button>
 
-
-      <div >
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-          Editar
-        </button>
-        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-          Delete
-        </button>
-      </div>
-    </div>
-  )
-}
+              <button
+                onClick={() => setEditMode(false)}
+                className="ring-2  ring-red-800 text-cyan-50 rounded-xl px-3 py-1 hover:bg-red-800"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </>
+  );
+};
 
 export default Tareas;
