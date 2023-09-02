@@ -7,6 +7,15 @@ const ListadoTareas = ({ tareas, setTareas }) => {
     const newArrayTareas = tareas.filter((tarea) => tarea.id !== id);
     setTareas(newArrayTareas);
   };
+  const updateTarea = (updatedTarea) => {
+    const updatedTareas = tareas.map((t) => {
+      if (t.id === updatedTarea.id) {
+        return updatedTarea;
+      }
+      return t;
+    });
+    setTareas(updatedTareas);
+  };
 
 
   return (
@@ -18,6 +27,7 @@ const ListadoTareas = ({ tareas, setTareas }) => {
             key={tarea.id}
             handleDeleteTarea={handleDeleteTarea}
             setTareas={setTareas}
+            updateTarea={updateTarea}
           />
         ))}
       </section>
