@@ -16,7 +16,7 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
   const [EditMode, setEditMode] = useState(false);
   
   function getRandomZeroOneOrTwo() {
-    return Math.floor(Math.random() * 3);
+    return Math.floor(Math.random() * 2);
   }
   const randomValue = getRandomZeroOneOrTwo();
 
@@ -32,8 +32,7 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
         }}
       >
         {" "}
-        <div className="w-72 m-1 bg-gradient-to-b from-sky-900 to-sky-950 mb-3 rounded-2xl shadow-md shadow-cyan-500/40 flex flex-col justify-center items-center">
-          {/*Informacion del usuario */}
+        <div className="w-72 m-1 bg-gradient-to-b from-sky-900 to-sky-950 mb-3 rounded-2xl shadow-md shadow-cyan-500/40 flex flex-col justify-center items-center">          {/*Informacion del usuario */}
           <section className="w-11/12 flex gap-3 ml-4 mt-2">
             <div className="rounded-full h-20 bg-cyan-400 w-20 mt-3">
               <img
@@ -51,7 +50,9 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
                 <input
                   type="text"
                   value={nombre}
-                  className="w-full h-5  bg-gray-800 text-lg px-1 text-cyan-50 rounded-lg ring-2 ring-blue-600"
+                  onChange={(e)=>setNombre(e.target.value)}
+
+                  className="w-full h-5  bg-gray-800 text-lg px-1 text-cyan-50 rounded-lg ring-2 ring-green-600"
                 />
               )}
               {!EditMode ? (
@@ -62,7 +63,8 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
                 <input
                   type="text"
                   value={Puesto}
-                  className="w-24 h-4 mt-2 rounded-lg text-xs px-1 text-cyan-50 bg-gray-800 ring-2 ring-blue-600"
+                  onChange={(e)=>setPuesto(e.target.value)}
+                  className="w-24 h-4 mt-2 rounded-lg text-xs px-1 text-cyan-50 bg-gray-800 ring-2 ring-green-600"
                 />
               )}
             </div>
@@ -78,7 +80,9 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
                 <input
                   type="date"
                   value={Fecha}
-                  className="w-30 h-4 text-cyan-50 text-sm  bg-gray-800 rounded-sm ring-2 ring-blue-600"
+                  onChange={(e)=>setFecha(e.target.value)}
+
+                  className="w-30 h-4 text-cyan-50 text-sm  bg-gray-800 rounded-sm ring-2 ring-green-600"
                 />
               )}
            
@@ -90,7 +94,9 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
                 <textarea
                   type="date"
                   value={Descripcion}
-                  className="w-full h-14  bg-gray-800 mt-3 rounded-lg ring-2 ring-blue-600"
+                  onChange={(e)=>setDescripcion(e.target.value)}
+
+                  className="w-full h-14 text-cyan-50 text-sm bg-gray-800 mt-3 rounded-sm ring-2 ring-green-600"
                 />
               )}
              
@@ -101,21 +107,21 @@ const Tareas = ({ tarea, handleDeleteTarea }) => {
             <div className="w-11/12 my-5   flex gap-5 justify-center">
               <button
                 onClick={() => setEditMode(true)}
-                className="ring-2  ring-green-500 text-cyan-50 rounded-xl px-5 py-1 hover:bg-green-800"
+                className="ring-2  ring-green-400 text-cyan-50 rounded-xl px-5 py-1 hover:bg-green-800"
               >
                 Edit
               </button>
 
               <button
                 onClick={() => handleDeleteTarea(tarea.id)}
-                className="ring-2  ring-red-500 text-cyan-50 rounded-xl px-3 py-1 hover:bg-red-800"
+                className="ring-2  ring-red-400 text-cyan-50 rounded-xl px-3 py-1 hover:bg-red-800"
               >
                 Delete
               </button>
             </div>
           ) : (
             <div className="w-11/12 my-5   flex gap-5 justify-center">
-              <button className="ring-2  ring-blue-500 text-cyan-50 rounded-xl px-5 py-1 hover:bg-blue-800">
+              <button className="ring-2  ring-blue-400 text-cyan-50 rounded-xl px-5 py-1 hover:bg-blue-800">
                 Save
               </button>
 

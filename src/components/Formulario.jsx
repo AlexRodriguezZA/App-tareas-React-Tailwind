@@ -50,7 +50,7 @@ const Formulario = ({ tareas, setTareas }) => {
        
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-900 shadow-md w-11/12  rounded-xl flex flex-col items-center"
+        className="bg-gray-900 shadow-xl w-11/12  rounded-xl flex flex-col items-center"
       >
         <div className="w-full">
           <h3 className="text-center w-full text-3xl my-2 font-bold text-green-400 ">

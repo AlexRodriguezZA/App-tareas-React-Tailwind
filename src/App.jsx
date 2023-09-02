@@ -9,7 +9,7 @@ function App() {
   const [Tareas, setTareas] = useState([])
 
   return (
-    <div className="w-full flex flex-col justify-center items-center mt-10">
+    <div className="w-full flex flex-col justify-center items-center ">
       <Header/>
 
       <div className='mt-6 md:mt-10 w-full flex flex-col md:flex-row md:justify-center'>
